@@ -1,0 +1,171 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Manuscript file by Robert Haase, license CC-BY 4.0
+%%%
+%%% https://github.com/haesleinhuepf/git-bob-manuscript
+%%% https://creativecommons.org/licenses/by/4.0/deed.en 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% LaTeX Template for ECAI Papers 
+%%% Prepared by Ulle Endriss (version 1.0 of 2023-12-10)
+
+%%% To be used with the ECAI class file ecai.cls.
+%%% You also will need a bibliography file (such as mybibfile.bib).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Start your document with the \documentclass{} command.
+%%% Use the first variant for the camera-ready paper.
+%%% Use the second variant for submission (for double-blind reviewing).
+
+\documentclass{ecai} 
+%\documentclass[doubleblind]{ecai} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Load any packages you require here. 
+
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{hyperref}
+
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\newcolumntype{R}[2]{%
+    >{\adjustbox{angle=#1,lap=\width-(#2)}\bgroup}%
+    l%
+    <{\egroup}%
+}
+\newcommand*\rot{\multicolumn{1}{R{90}{1em}}}% no optional argument here, please!
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Define any theorem-like environments you require here.
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{definition}{Definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Define any new commands you require here.
+
+\newcommand{\BibTeX}{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em\TeX}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frontmatter}
+
+%%% Use this command to specify your submission number.
+%%% In doubleblind mode, it will be printed on the first page.
+
+\paperid{363} 
+
+%%% Use this command to specify the title of your paper.
+
+\title{Towards Reproducibility and Knowledge Transfer in AI-assisted Data Analysis Code Generation}
+
+%%% Use this combinations of commands to specify all authors of your 
+%%% paper. Use \fnms{} and \snm{} to indicate everyone's first names 
+%%% and surname. This will help the publisher with indexing the 
+%%% proceedings. Please use a reasonable approximation in case your 
+%%% name does not neatly split into "first names" and "surname".
+%%% Specifying your ORCID digital identifier is optional. 
+%%% Use the \thanks{} command to indicate one or more corresponding 
+%%% authors and their email address(es). If so desired, you can specify
+%%% author contributions using the \footnote{} command.
+
+\author[A,B]{\fnms{Robert}~\snm{Haase}\orcid{0000-0001-5949-2327}\thanks{Corresponding Author. Email: robert.haase@uni-leipzig.de}}
+
+\address[A]{Data Science Center, Leipzig University, Humboldtstra{\ss}e 25, 04105 Leipzig, Germany}
+\address[B]{Center for Scalable Data Analytics and Artificial Intelligence (ScaDS.AI) Dresden / Leipzig}
+
+%%% Use this environment to include an abstract of your paper.
+
+\begin{abstract}
+
+Abstract will be added later
+
+\end{abstract}
+
+\end{frontmatter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+LLMs changing the world. \citep{Royer2023} \citep{royer2023omega}
+Typically human interacts with AI.
+Later nobody can reproduce if the human wrote the code or the AI.
+Solutions for tracking who did what: git, well established in the open source data analysis community.
+git-bob bridges both worlds: reproducible who did what by interacting with LLM via git and github issues / PRs.
+As LLMs are capable of solving github-issues \citep{jimenez2024swebenchlanguagemodelsresolve} and write entire papers \citep{lu2024aiscientist}, such a solution is urgently need to be established as good scientific practice.
+AS prompts are documented in github-issues, 
+
+\url{https://github.com/haesleinhuepf/git-bob}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=8.5cm]{fig1_example_interaction.png}
+    \caption{example interaction with git-bob - figure placeholder}
+    \label{fig:exampleinteraction}
+    \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Features and limitations}
+
+git-bob is implemented as github action, hence runs in the IT infrastructure of github.com. 
+No local installation is required.
+No new graphical interface needs to be learned, it integrates well with pre-existing workflows.
+It allows interaction of multiple humans with the LLM within the same context. E.g. an open source software user can reach out with a question about how to analyse an image, an expert can point out a wage strategy and the LLM implements the details, which can be reviewed be the user and the expert.
+it allows multi-turn interaction with the LLM using direct text input, additionally file input from a given repository and, when used with a vision language model, also image input. if used with a vision-language model such as OpenAI's GPT4-omni, an LLM that can take an opitional image as input, it can describe image content and with this, guide further analysis.
+can be configured for different purposes, such as assisting in code writing, [bio-image] data analysis, manuscript writing, code reviewing, but also answering questions of externals reaching out to developers of open source repositories.
+It can be used in private repositories giving scientists the necessary privacy to work on code and documentation before they eventually publish their work. For example, this manuscript was edited with LLM assistance in a private repository, and the reader can finally see which modifications were done by the human, and how the AI-assistant contributed to the work as shown in in Figure \ref{fig:exampleinteraction}C.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusion}
+
+LLMs are being integrated in contemporary scientific workflows unavoidably. 
+To use LLMs responsibly, documenting how they were used in a specific project seems good-scientific-practice. git-bob allows facilitating this on multiple levels: for code generation, but also for manuscript writing. git-bob is the first implementation that is tightly integrated
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Use this environment to include acknowledgements (optional).
+%%% This will be omitted in doubleblind mode.
+
+\begin{ack}
+RH acknowledges the financial support by the Federal Ministry of Education and Research of Germany and by Sächsische Staatsministerium für Wissenschaft, Kultur und Tourismus in the programme Center of Excellence for AI-research „Center for Scalable Data Analytics and Artificial Intelligence Dresden/Leipzig“, project identification number: ScaDS.AI.
+NS acknowledges support by the BMBF (Federal Ministry of Education and Research) through ACONITE (01IS22065).
+JKH and CT thank EMBL IT services for their support with Kubernetes.
+
+\end{ack}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Use this command to include your bibliography file.
+
+\bibliography{mybibfile}
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
