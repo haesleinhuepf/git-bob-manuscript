@@ -128,13 +128,15 @@ Generative artificial intelligence (AI) and Large Language Models (LLMs) in part
 
 \section{Features and limitations}
 
-A common workflow, demonstrated in Figure \ref{fig:exampleinteraction}A, is that a user opens an issue on a repository on Github.com, where git-bob is installed. If the user is repository member, they can trigger git-bob to answer. If they are externals, a repository member has to do this. git-bob may then answer the question, potentially including a code snippet and resulting images. Users and the AI-assistant can then argue back and forth until some potential solution is reached. Optionally, git-bob can then be asked to submit a GitHub pull-request, e.g. with a Jupyter Notebook containing the entire solution to a given issue. A human would need to review this pull-request and merge it into the code base of the repository. Git-bob also has the capability to review pull-requests, e.g. originating from humans, but it is not allowed to merge them. This reflects established practices in science, where eventually a human is responsible for data analysis code that becomes part of the project. Additional tasks git-bob is capable of are: 1) The assistant can support users of open source libraries by providing advice and code examples,as shown in Supplementary Figure \ref{fig:examplesupportingusers}. In case the assistant is not sure about the answer, it is capable of forwarding the question to a human, as shown in Supplementary Figure \ref{fig:examplesupportingusers2}. 2) It can write and execute data analysis code, e.g. to summarize and plot CSV files which are stored in a repository, as demonstrated in Supplementary Figure \ref{fig:exampleplotting}. When analysing data, the assistant is intrinsically limited by the capabilities of the used LLM. For example, it has been shown before that common commercial state-of-the-art LLMs can solve bio-image analysis questions by generating functionally correct code just above $50\%$ of tested cases \citep{benchmark_llm_bia}. This fundamental limitation may disappear when improved LLMs are published. For now, it can be evaded in multi-turn interactions between humans and AI. Yet, we humans need to guide the AI towards a workable solution. 
+A common workflow, demonstrated in Figure \ref{fig:exampleinteraction}A, is that a user opens an issue on a repository on Github.com, where git-bob is installed. If the user is repository member, they can trigger git-bob to answer. If they are externals, a repository member has to do this. git-bob may then answer the question, potentially including a code snippet and resulting images. Users and the AI-assistant can then argue back and forth until some potential solution is reached. Optionally, git-bob can then be asked to submit a GitHub pull-request, e.g. with a Jupyter Notebook containing the entire solution to a given issue. A human would need to review this pull-request and merge it into the code base of the repository. Git-bob also has the capability to review pull-requests, e.g. originating from humans, but it is not allowed to merge them. This reflects established practices in science, where eventually a human is responsible for data analysis code that becomes part of the project. Additional tasks git-bob is capable of are: 1) The assistant can support users of open source libraries by providing advice and code examples,as shown in Supplementary Figure \ref{fig:examplesupportingusers}. In case the assistant is not sure about the answer, it is capable of forwarding the question to a human, as shown in Supplementary Figure \ref{fig:examplesupportingusers2}. 2) It can be used to document code as shown in Supplementary Figure \ref{fig:example_add_documentation}. Such a task can be time-consuming when performed without AI-assistance, which can write documentation for multiple Python functions in seconds to minutes. 3) It can write and execute data analysis code, e.g. to summarize and plot CSV files which are stored in a repository, as demonstrated in Supplementary Figure \ref{fig:exampleplotting}. 4) If manuscript files are stored in a github repository, e.g. in latex format, git-bob can assist writing. For example, the abstract for this manuscript was written by the AI-assistant and this is documented transparently as shown in Supplementary Figure \ref{fig:xample_abstract_generation}.
+
+When writing code for data analysis or manuscript text, the assistant is intrinsically limited by the capabilities of the used LLM. For example, it has been shown before that common commercial state-of-the-art LLMs can solve bio-image analysis questions by generating functionally correct code just above $50\%$ of tested cases \citep{benchmark_llm_bia}. This fundamental limitation may disappear when improved LLMs are published. For now, it can be evaded in multi-turn interactions between humans and AI. Yet, we humans need to guide the AI towards a workable solution. 
 
 A highlight of git-bob is that a local installation or an institutional internet server are not required. Git-bob is implemented as GitHub Workflow, and hence runs within the IT infrastructure of github.com. It is compatible with GPT4-omni, other OpenAI LLMs, Anthropic's Claude, Google Gemini, models hosted on Github Models Marketplace and other models which use the OpenAI application programming interface (API). Git-bob reports which model was used in all of its messages, as good scientific practice suggests. The first three of the mentioned vendors require payment for using their services through the API, the others may offer usage of their API for free. Obviously, the communication with the selected LLM is transmitted to the service provider, including source code files from the repository and images provided with the github issue. Hence, users are recommended to not submit any personal or sensitive information. 
 
 Using git-bob and also LLMs in general does not eliminate the need for expertise in the domain we are working in. For example, when tasked to setup a bio-image analysis workflow, at least one of the the humans interacting with git-bob should have the expertise to judge if a proposed solution is reasonable at least. When LLMs improve, especially their reasoning capabilities, this limitation may feel less and less relevant. Eventually, as correct results are commonly unknown in data analysis research projects, a human  may still be required who has the right expertise to judge if a workflow is producing correct results.
 
-Git-bob can be used in private repositories giving scientists the necessary privacy to work on projects before they eventually publish their work. For example, this manuscript was edited with AI-assistance in a private repository as shown in Supplementary Figure \ref{}.
+Git-bob can be used in private repositories giving scientists the necessary privacy to work on projects before they eventually publish their work. Above mentioned abstract writing for this manuscript was performed while the repository was private.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -200,12 +202,25 @@ RH acknowledges the financial support by the Federal Ministry of Education and R
 
 \begin{figure*}[h]
 \centering
-\includegraphics[width=0.82\textwidth]{example_abstract_generation.png}
-\caption{Use-case example for working on scientific manuscripts: After a first draft of the manuscript was written, git-bob was asked to formulate an abstract. The abstract was added to the .tex document after git-bob sent a pull-request and the human author reviewed it. The entire discussion can be read online: \url{https://github.com/haesleinhuepf/git-bob-manuscript/issues/}
+\includegraphics[width=0.82\textwidth]{example_add_documentation.png}
+\caption{Use-case example for adding and revising documentation in code: git-bob was used to partially write the code documentation of its own code. When asked to add documentation in a specific format, it sent a pull-request (A) and the human could inspect the code modifications (B, excerpt) before mergin the code into the project's code base. The entire discussion and corresponding code can be read online: \url{https://github.com/haesleinhuepf/git-bob/pull/29}
 \newline
 \newline
 }
-\label{fig:exampleplotting}
+\label{fig:example_add_documentation}
+\end{figure*}
+
+
+
+
+\begin{figure*}[h]
+\centering
+\includegraphics[width=0.82\textwidth]{example_abstract_generation.png}
+\caption{Use-case example for working on scientific manuscripts: After a first draft of the manuscript was written, git-bob was asked to formulate an abstract (A). The abstract was then submitted as pull-request with a short description (B). The human can also review and potentially modify the proposed text in this online interface (C). The entire discussion can be read online: \url{https://github.com/haesleinhuepf/git-bob-manuscript/issues/8} and \url{https://github.com/haesleinhuepf/git-bob-manuscript/pull/9}.
+\newline
+\newline
+}
+\label{fig:xample_abstract_generation}
 \end{figure*}
 
 \end{document}
