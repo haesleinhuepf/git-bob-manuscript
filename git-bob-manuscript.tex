@@ -114,16 +114,6 @@ The integration of Large Language Models (LLMs) in scientific research presents 
 
 Generative artificial intelligence (AI) and Large Language Models (LLMs) in particular are changing the way we do data science. Most prominently, scientists use the technology for interacting with scientific data \citep{Royer2023}, answer data analysis questions \citep{Lai2022DS1000, lei2024bioimage}, generate data analysis code \citep{royer2023omega, benchmark_llm_bia, chen2021evaluating}, and [re-]writing scientific manuscripts \citep{lu2024aiscientist}. Unfortunately, the prompts sent to LLMs are commonly not stored, hindering knowledge exchange between scientists on how to use the technology efficiently and responsibly. At the time of publication of scientific code and manuscripts, the workflow that lead to a given set of data analysis code may be intransparent: It might be hard to identify the parts of the project which were implemented by a human and the parts that were created by AI. A professional peer-review system, for documenting how LLM-written code was prompted for, and which human reviewed it, is not established in contemporary scientific culture. However, such systems do exist for collaborative code editing involving multiple humans. E.g. the github.com online platform is well-established in the open-source software community for discussing issues and potential solutions, building code together, and for peer-reviewing it, before it is published to a wider community. As it was shown before that LLMs can solve real-world GitHub issues \citep{jimenez2024swebenchlanguagemodelsresolve}, developing an AI-assistant that inteacts with humans directly on the Github platform is the obvious next step. In this manuscript, I am presenting git-bob, a practical implementation of an LLM-based AI-assistant that can answer to GitHub issues, discuss potential solutions with humans iteratively, write code for them, and submit it as pull-request to reviewed by humans. It is technically similar to various online services for data analysis such as the OpenAI ChatGPT Data Analyst, with three major differences: 1) Multiple humans can interact with git-bob in one communication thread. This allows bringing together domain specialists, e.g. a life scientist, data-analyst and AI in one discussion, stimulating knowledge exchange. 2) Discussions with git-bob and resulting code-modifications are maintained in an online-platform that others can read and follow, making the interaction with the AI fully transparent, and 3) git-bob is open-source. As it uses a platform software developers and data analysts are used to, it does hardly change pre-existing workflows. It just allows to inject AI into discussions they have anyway. In a world where it was demonstrated that LLM-based systems can write entire papers, review and improve them \citep{lu2024aiscientist} autonomously, such a solution is urgently need to be established as part of good scientific practice. The open source code of git-bob is available online and comes with detailed installation instructions so that everyone can start interacting with it on their github repositories: \url{https://github.com/haesleinhuepf/git-bob}
 
-\begin{figure*}[h]
-\centering
-\includegraphics[width=0.82\textwidth]{fig1_example_interaction.png}
-\caption{example interaction with git-bob - figure placeholder
-\newline
-\newline
-}
-\label{fig:exampleinteraction}
-\end{figure*}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Features and limitations}
@@ -159,6 +149,16 @@ RH acknowledges the financial support by the Federal Ministry of Education and R
 %%% Use this command to include your bibliography file.
 
 \bibliography{mybibfile}
+
+\begin{figure*}[h]
+\centering
+\includegraphics[width=0.82\textwidth]{example_interaction.png}
+\caption{Use-case example for the interaction with git-bob: After creating a GitHub issue, optionally including upload of an example image, the AI-assistant and the human exchange about how to process the data (A). Once they concluded to implement the solution, a GitHub pull-request is sent (B) containing the programmed solution as files in the repository. Also here, human and AI-assistant can continue discussing and modify the solution until the example is satisfactory.  The entire discussion and corresponding code can be read online: \url{https://github.com/haesleinhuepf/git-bob-playground/issues/13} and \url{https://github.com/haesleinhuepf/git-bob-playground/pull/14}
+\newline
+\newline
+}
+\label{fig:example_interaction}
+\end{figure*}
 
 \section{Supplementary material}
 \setcounter{figure}{0} 
