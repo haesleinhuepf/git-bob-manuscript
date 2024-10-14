@@ -1,129 +1,74 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% Manuscript file by Robert Haase, license CC-BY 4.0
-%%%
 %%% https://github.com/haesleinhuepf/git-bob-manuscript
+%%%
+%%% Based on Ricardo Henriques bioRxiv template, license CC-BY 4.0
+%%% https://www.overleaf.com/latex/templates/henriqueslab-biorxiv-template/nyprsybwffws
 %%% https://creativecommons.org/licenses/by/4.0/deed.en 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% LaTeX Template for ECAI Papers 
-%%% Prepared by Ulle Endriss (version 1.0 of 2023-12-10)
+\documentclass[times, twoside]{zHenriquesLab-StyleBioRxiv}
+\usepackage{blindtext}
 
-%%% To be used with the ECAI class file ecai.cls.
-%%% You also will need a bibliography file (such as mybibfile.bib).
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%% Start your document with the \documentclass{} command.
-%%% Use the first variant for the camera-ready paper.
-%%% Use the second variant for submission (for double-blind reviewing).
-
-\documentclass{ecai} 
-%\documentclass[doubleblind]{ecai} 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%% Load any packages you require here. 
-
-\usepackage{latexsym}
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{booktabs}
-\usepackage{enumitem}
-\usepackage{graphicx}
-\usepackage{color}
-\usepackage{hyperref}
-\usepackage{lineno}
-
-\usepackage{adjustbox}
-\usepackage{array}
-\usepackage{booktabs}
-\usepackage{multirow}
-
-\newcolumntype{R}[2]{%
-    >{\adjustbox{angle=#1,lap=\width-(#2)}\bgroup}%
-    l%
-    <{\egroup}%
-}
-\newcommand*\rot{\multicolumn{1}{R{90}{1em}}}% no optional argument here, please!
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%% Define any theorem-like environments you require here.
-
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{fact}[theorem]{Fact}
-\newtheorem{definition}{Definition}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%% Define any new commands you require here.
-
-\newcommand{\BibTeX}{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em\TeX}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Please give the surname of the lead author for the running footer
+\leadauthor{Haase} 
 
 \begin{document}
 
-\linenumbers
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frontmatter}
-
-%%% Use this command to specify your submission number.
-%%% In doubleblind mode, it will be printed on the first page.
-
-\paperid{363} 
-
-%%% Use this command to specify the title of your paper.
-
 \title{Towards Transparency and Knowledge Exchange in AI-assisted Data Analysis Code Generation}
+\shorttitle{Transparency and Knowledge Exchange when Coding with AI}
 
-%%% Use this combinations of commands to specify all authors of your 
-%%% paper. Use \fnms{} and \snm{} to indicate everyone's first names 
-%%% and surname. This will help the publisher with indexing the 
-%%% proceedings. Please use a reasonable approximation in case your 
-%%% name does not neatly split into "first names" and "surname".
-%%% Specifying your ORCID digital identifier is optional. 
-%%% Use the \thanks{} command to indicate one or more corresponding 
-%%% authors and their email address(es). If so desired, you can specify
-%%% author contributions using the \footnote{} command.
+% Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
+\author[1,2,\Letter]{Robert Haase}
 
-\author[A,B]{\fnms{Robert}~\snm{Haase}\orcid{0000-0001-5949-2327}\thanks{Corresponding Author. Email: robert.haase@uni-leipzig.de}}
+\affil[1]{Data Science Center, Leipzig University, Humboldtstra{\ss}e 25, 04105 Leipzig, Germany}
+\affil[2]{Center for Scalable Data Analytics and Artificial Intelligence (ScaDS.AI) Dresden / Leipzig}
 
-\address[A]{Data Science Center, Leipzig University, Humboldtstra{\ss}e 25, 04105 Leipzig, Germany}
-\address[B]{Center for Scalable Data Analytics and Artificial Intelligence (ScaDS.AI) Dresden / Leipzig}
+\maketitle
 
-%%% Use this environment to include an abstract of your paper.
-
+%TC:break Abstract
+%the command above serves to have a word count for the abstract
 \begin{abstract}
 
 The integration of Large Language Models (LLMs) in scientific research presents both opportunities and challenges for life scientists. Key challenges include ensuring transparency in AI-generated content and facilitating efficient knowledge exchange among researchers. These issues arise from the in-transparent nature of AI-driven code generation and the informal sharing of AI insights, which may hinder reproducibility and collaboration. This paper introduces git-bob, an innovative AI-assistant designed to address these challenges by fostering an interactive and transparent collaboration platform within GitHub. By enabling seamless dialogue between humans and AI, git-bob ensures that AI contributions are transparent and verifiable. Moreover, it supports collaborative knowledge exchange, enhancing the interdisciplinary dialogue necessary for cutting-edge life sciences research. The open-source nature of git-bob further promotes accessibility and customization, positioning it as a vital tool in employing LLMs responsibly and effectively within scientific communities.
 
-\end{abstract}
+\end {abstract}
+%TC:break main
+%the command above serves to have a word count for the abstract
 
-\end{frontmatter}
+\begin{keywords}
+data analysis, bio-image analysis, LLM, code-generation
+\end{keywords}
+
+\begin{corrauthor}
+robert.haase@uni-leipzig.de, ORCID: 0000-0001-5949-2327
+\end{corrauthor}
+
+
+
+\section*{Introduction}
+
+Generative artificial intelligence (AI) and Large Language Models (LLMs) in particular are changing the way we do data science. Most prominently, scientists use the technology for interacting with scientific data \cite{Royer2023}, answer data analysis questions \cite{Lai2022DS1000, lei2024bioimage}, generate data analysis code \cite{royer2023omega, benchmark_llm_bia, chen2021evaluating}, and [re-]writing scientific manuscripts \cite{lu2024aiscientist}. Unfortunately, the prompts sent to LLMs are commonly not conserved, hindering knowledge exchange between scientists on how to use the technology efficiently and responsibly. At the time of publication of scientific code and manuscripts, the workflow that lead to a given set of data analysis code is typically intransparent: It might be hard to identify the parts of the project which were implemented by a human and the parts that were created by AI. A professional peer-review system, for documenting how LLM-written code was prompted for, and which human reviewed it, is not established in contemporary scientific culture. However, such systems do exist for collaborative code editing involving multiple humans. E.g. the github.com online platform is well-established in the open-source software community for discussing issues and potential solutions, building code together, and for peer-reviewing code and documentation, before they are published to a wider community. As it was shown before that LLMs can solve real-world GitHub issues \cite{jimenez2024swebenchlanguagemodelsresolve}, developing an AI-assistant that interacts with humans directly on the Github platform is the obvious next step. In this manuscript, I am presenting git-bob, a functional proof-of-concept implementation of an LLM-based AI-assistant that can respond to GitHub issues, discuss potential solutions with humans iteratively, write code for them, and submit it as pull-request to be reviewed by humans. It is technically similar to various online services for data analysis such as the OpenAI ChatGPT Data Analyst or Github Copiolt Workflows, with three major differences: 1) Multiple humans can interact with git-bob in one communication thread. This allows bringing together domain specialists, e.g. a life scientist, data-analyst and the AI-assistant in one discussion, stimulating knowledge exchange on how to interact with the AI-assistant. 2) Discussions with git-bob and resulting code-modifications are maintained in an online-platform that others can read and follow, making the interaction with the LLM-based system fully transparent, and 3) git-bob is open-source. Other developers can read its built-in system prompts and modify them to their needs. As it uses Github, a platform software developers and data analysts are used to, it does hardly change pre-existing workflows. It just allows to introduce an AI-assistant into discussions users and developers have anyway. In a world where it was demonstrated that LLM-based systems can write entire papers, review and improve them autonomously \cite{lu2024aiscientist}, such a solution is urgently need to be established as part of good scientific practice. The open source code of git-bob is available online and comes with detailed installation instructions so that everyone can start interacting with it on their github repositories: \url{https://github.com/haesleinhuepf/git-bob}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Introduction}
-
-Generative artificial intelligence (AI) and Large Language Models (LLMs) in particular are changing the way we do data science. Most prominently, scientists use the technology for interacting with scientific data \citep{Royer2023}, answer data analysis questions \citep{Lai2022DS1000, lei2024bioimage}, generate data analysis code \citep{royer2023omega, benchmark_llm_bia, chen2021evaluating}, and [re-]writing scientific manuscripts \citep{lu2024aiscientist}. Unfortunately, the prompts sent to LLMs are commonly not conserved, hindering knowledge exchange between scientists on how to use the technology efficiently and responsibly. At the time of publication of scientific code and manuscripts, the workflow that lead to a given set of data analysis code is typically intransparent: It might be hard to identify the parts of the project which were implemented by a human and the parts that were created by AI. A professional peer-review system, for documenting how LLM-written code was prompted for, and which human reviewed it, is not established in contemporary scientific culture. However, such systems do exist for collaborative code editing involving multiple humans. E.g. the github.com online platform is well-established in the open-source software community for discussing issues and potential solutions, building code together, and for peer-reviewing code and documentation, before they are published to a wider community. As it was shown before that LLMs can solve real-world GitHub issues \citep{jimenez2024swebenchlanguagemodelsresolve}, developing an AI-assistant that interacts with humans directly on the Github platform is the obvious next step. In this manuscript, I am presenting git-bob, a functional proof-of-concept implementation of an LLM-based AI-assistant that can respond to GitHub issues, discuss potential solutions with humans iteratively, write code for them, and submit it as pull-request to be reviewed by humans. It is technically similar to various online services for data analysis such as the OpenAI ChatGPT Data Analyst or Github Copiolt Workflows, with three major differences: 1) Multiple humans can interact with git-bob in one communication thread. This allows bringing together domain specialists, e.g. a life scientist, data-analyst and the AI-assistant in one discussion, stimulating knowledge exchange on how to interact with the AI-assistant. 2) Discussions with git-bob and resulting code-modifications are maintained in an online-platform that others can read and follow, making the interaction with the LLM-based system fully transparent, and 3) git-bob is open-source. Other developers can read its built-in system prompts and modify them to their needs. As it uses Github, a platform software developers and data analysts are used to, it does hardly change pre-existing workflows. It just allows to introduce an AI-assistant into discussions users and developers have anyway. In a world where it was demonstrated that LLM-based systems can write entire papers, review and improve them autonomously \citep{lu2024aiscientist}, such a solution is urgently need to be established as part of good scientific practice. The open source code of git-bob is available online and comes with detailed installation instructions so that everyone can start interacting with it on their github repositories: \url{https://github.com/haesleinhuepf/git-bob}.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Features and limitations}
+\section*{Features and limitations}
 
 A common workflow, demonstrated in Figure \ref{fig:example_interaction}, is that a user opens an issue on a repository on github.com, where git-bob is installed. Github issues are discussion threads commonly used by open source software users for reporting bugs and asking questions. Also software maintainers use Github issues to discuss further developments before implementing them. In such a thread, repository members can trigger git-bob to answer by writing a command such as ``git-bob comment on this''. If they are externals an automatic respons will inform them that only repository members are allowed to trigger git-bob because running git-bob may cause costs for them. Once triggered, git-bob will respond to the question, potentially including a code snippet and resulting images. Users and the AI-assistant can then discuss back and forth until some potential solution is reached. Optionally, git-bob can then be asked to submit a GitHub pull-request, another kind of discussion thread, but accompanied by file modifications to the repository, e.g. including a Jupyter Notebook containing the breviously discussed code solution to a given issue. A human would need to review this pull-request and merge it into the code base of the repository. Git-bob also has the capability to review pull-requests, e.g. originating from humans, but it is not allowed to merge them. This reflects established practices in science, where eventually a human is responsible for data analysis code that becomes part of the project. Additional tasks git-bob is capable of are: 1) The assistant can support users of open source libraries by providing advice and code examples,as shown in Supplementary Figure \ref{fig:examplesupportingusers}. In case the assistant is not sure about the answer, it is capable of forwarding the question to a human, as shown in Supplementary Figure \ref{fig:examplesupportingusers2}. 2) It can be used to document code as shown in Supplementary Figure \ref{fig:example_add_documentation}. Such a task can be time-consuming when performed without AI-assistance, which can write documentation for multiple Python functions in seconds to minutes. 3) It can write and execute data analysis code, e.g. to summarize and plot CSV files which are stored in a repository, as demonstrated in Supplementary Figure \ref{fig:exampleplotting}. 4) If manuscript files are stored in a github repository, e.g. in latex format, git-bob can assist in writing. For example, the abstract for this manuscript was written by the AI-assistant and this is documented transparently as shown in Supplementary Figure \ref{fig:xample_abstract_generation}.
 
-When writing code for data analysis or manuscript text, the assistant is intrinsically limited by the capabilities of the used LLM. For example, it has been shown before that common commercial state-of-the-art LLMs can solve bio-image analysis questions by generating functionally correct code just above $50\%$ of tested cases \citep{benchmark_llm_bia}. This fundamental limitation may disappear when improved LLMs are published. For now, it can be evaded in multi-turn interactions between humans and AI. Yet, we humans need to guide the AI towards a workable solution. 
+\begin{figure*}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{example_interaction.png}
+\caption{Use-case example for the interaction with git-bob: After creating a GitHub issue, optionally including upload of an example image, the AI-assistant and the human exchange about how to process the data (A). Once they concluded to implement the solution, a GitHub pull-request is sent (B) containing the programmed solution as files in the repository. Also here, human and AI-assistant can continue discussing and modify the solution until the example is satisfactory (C). The discussion also contains error messages observed while the AI-assistant was executing code or creating files, allowing to modify prompts or improve git-bob itself. The entire discussion and corresponding code can be read online: \url{https://github.com/haesleinhuepf/git-bob-playground/issues/13} and \url{https://github.com/haesleinhuepf/git-bob-playground/pull/14}
+\newline
+\newline
+}
+\label{fig:example_interaction}
+\end{figure*}
+
+When writing code for data analysis or manuscript text, the assistant is intrinsically limited by the capabilities of the used LLM. For example, it has been shown before that common commercial state-of-the-art LLMs can solve bio-image analysis questions by generating functionally correct code just above $50\%$ of tested cases \cite{benchmark_llm_bia}. This fundamental limitation may disappear when improved LLMs are published. For now, it can be evaded in multi-turn interactions between humans and AI. Yet, we humans need to guide the AI towards a workable solution. 
 
 A highlight of git-bob is that a local installation or an institutional internet server are not required. Git-bob is implemented as GitHub workflow, and hence runs within the IT infrastructure of github.com. It is compatible with GPT4-omni, other OpenAI LLMs, Anthropic's Claude, Google Gemini, models hosted on Github Models Marketplace and other models which use the OpenAI application programming interface (API). Git-bob reports which model was used in all of its messages, as good scientific practice suggests. The first three of the mentioned vendors require payment for using their services through the API, the others may offer usage of their API for free. Obviously, the communication with the selected LLM is transmitted to the service provider, including source code files from the repository and images provided with the github issue. Hence, users are recommended to not submit any personal or sensitive information. 
 
@@ -133,46 +78,40 @@ Git-bob can be used in private repositories giving scientists the necessary priv
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Conclusion}
+\section*{Conclusion}
 
 LLMs are being integrated in contemporary scientific workflows unavoidably, but documentation of how in detail they are employed is commonly not done, also because of lack of tools allowing this conveniently. If the scientific community documented usage of LLM prompts like they document usage of open source data analysis software, we could learn from each other how to prompt efficiently and responsibly. To overcome current limitations, I propose git-bob, a functional, LLM-based proof-of-concept AI-assistant. It works integrated on github.com enabling scientists to interact with an LLM via Github Issues and Pull-Requests offering new ways for implementing good scientific practice for the documentation of discussions between humans and AI when they are working on projects together.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{acknowledgements}
 
-%%% Use this environment to include acknowledgements (optional).
-%%% This will be omitted in doubleblind mode.
-
-\begin{ack}
 I would like to thank Elena Katharina Nicolay (UFZ Leipzig) for testing git-bob in its early days and for providing constructive feedback on the manuscript. I acknowledge the financial support by the Federal Ministry of Education and Research of Germany and by Sächsische Staatsministerium für Wissenschaft, Kultur und Tourismus in the programme Center of Excellence for AI-research "Center for Scalable Data Analytics and Artificial Intelligence Dresden/Leipzig", project identification number: ScaDS.AI.
 
-\end{ack}
+\end{acknowledgements}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{References}
+\bibliography{mybibfile.bib}
 
-%%% Use this command to include your bibliography file.
+%% You can use these special %TC: tags to ignore certain parts of the text.
+%TC:ignore
+%the command above ignores this section for word count
+\onecolumn
+\newpage
 
-\bibliography{mybibfile}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Supplementary Information %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\captionsetup*{format=largeformat}
 
-\begin{figure*}[h]
-\centering
-\includegraphics[width=0.82\textwidth]{example_interaction.png}
-\caption{Use-case example for the interaction with git-bob: After creating a GitHub issue, optionally including upload of an example image, the AI-assistant and the human exchange about how to process the data (A). Once they concluded to implement the solution, a GitHub pull-request is sent (B) containing the programmed solution as files in the repository. Also here, human and AI-assistant can continue discussing and modify the solution until the example is satisfactory (C). The discussion also contains error messages observed while the AI-assistant was executing code or creating files, allowing to modify prompts or improve git-bob itself. The entire discussion and corresponding code can be read online: \url{https://github.com/haesleinhuepf/git-bob-playground/issues/13} and \url{https://github.com/haesleinhuepf/git-bob-playground/pull/14}
-\newline
-\newline
-}
-\label{fig:example_interaction}
-\end{figure*}
 
-\section{Supplementary material}
+
+
+\section*{Supplementary material}
 \setcounter{figure}{0} 
 \renewcommand{\thefigure}{S\arabic{figure}}
 
-
-
-
 \begin{figure*}[h]
 \centering
-\includegraphics[width=0.82\textwidth]{example_supporting_users.png}
+\includegraphics[width=0.8\textwidth]{example_supporting_users.png}
 \caption{Use-case example for supporting users: The assistant can be configured to act as expert on a specific Python library and answer user questions. The entire discussion and corresponding code can be read online: \url{https://github.com/haesleinhuepf/stackview/issues/79}
 \newline
 \newline
@@ -183,7 +122,7 @@ I would like to thank Elena Katharina Nicolay (UFZ Leipzig) for testing git-bob 
 
 \begin{figure*}[h]
 \centering
-\includegraphics[width=0.82\textwidth]{example_supporting_users2.png}
+\includegraphics[width=0.8\textwidth]{example_supporting_users2.png}
 \caption{Use-case example for asking an expert: The answer to the question shown here is "No", but this is nowhere written in the documentation or the configuration of the assistant. In this case the assistant is not sure, and it can be configured to forward a question to a maintainer of the library where the question arrived. The entire discussion and corresponding code can be read online: \url{https://github.com/haesleinhuepf/stackview/issues/80}
 \newline
 \newline
@@ -194,7 +133,7 @@ I would like to thank Elena Katharina Nicolay (UFZ Leipzig) for testing git-bob 
 
 \begin{figure*}[h]
 \centering
-\includegraphics[width=0.82\textwidth]{example_plotting.png}
+\includegraphics[width=\textwidth]{example_plotting.png}
 \caption{Use-case example for plotting data: after explaining the assistant the folder structure of the project, it generates code for parsing a folder of CSV files and plotting results. The entire discussion and corresponding code can be read online: \url{https://github.com/NFDI4BIOIMAGE/training/issues/250}
 \newline
 \newline
@@ -218,7 +157,7 @@ I would like to thank Elena Katharina Nicolay (UFZ Leipzig) for testing git-bob 
 
 \begin{figure*}[h]
 \centering
-\includegraphics[width=0.82\textwidth]{example_abstract_generation.png}
+\includegraphics[width=\textwidth]{example_abstract_generation.png}
 \caption{Use-case example for working on scientific manuscripts: after a first draft of the manuscript was written, git-bob was asked to formulate an abstract (A). The abstract was then submitted as pull-request with a short description (B). The human can also review and potentially modify the proposed text in this online interface (C). The entire discussion can be read online: \url{https://github.com/haesleinhuepf/git-bob-manuscript/issues/8} and \url{https://github.com/haesleinhuepf/git-bob-manuscript/pull/9}.
 \newline
 \newline
@@ -226,5 +165,8 @@ I would like to thank Elena Katharina Nicolay (UFZ Leipzig) for testing git-bob 
 \label{fig:xample_abstract_generation}
 \end{figure*}
 
+
+%TC:endignore
+%the command above ignores this section for word count
+
 \end{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
