@@ -419,11 +419,11 @@
 \pagestyle{fancy}		  % Enables the custom headers/footers
 
 \def\aBioRXiv{{\footnotesize
-    \footerfont \@leadauthor\ifnum \value{authors} > 1\hspace{2pt}\textit{et al.}\fi\hspace{7pt}|\hspace{7pt}bio\textcolor{red}{R}$\chi$iv\hspace{7pt}|\hspace{7pt}\today\hspace{7pt}|\hspace{7pt}\thepage\textendash\pageref{LastPage}
+    \footerfont \@leadauthor\ifnum \value{authors} > 1\hspace{2pt}\textit{et al.}\fi\hspace{7pt}|\hspace{7pt}\hspace{7pt}\today\hspace{7pt}|\hspace{7pt}\thepage\textendash\pageref{LastPage}
   }}
 
 \def\bBioRXiv{{\footnotesize
-    \footerfont \thepage\hspace{7pt}|\hspace{7pt}bio\textcolor{red}{R}$\chi$iv
+    \footerfont \thepage\hspace{7pt}
   }}
   
 \def\cBioRXiv{{\footnotesize
