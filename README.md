@@ -4,7 +4,7 @@ This repository contains a tex document that is written by a human, [Robert Haas
 
 ## History
 
-You can read the history of the document and see in detail which part was written by the human and what was written by the LLM [here]().
+You can read the history of the document and see in detail which part was written by the human and what was written by the LLM [here](https://github.com/haesleinhuepf/git-bob-manuscript/commits/main/).
 
 ## Acknowledgements
 
