@@ -427,7 +427,7 @@
   }}
   
 \def\cBioRXiv{{\footnotesize
-    \footerfont bio\textcolor{red}{R}$\chi$iv\hspace{7pt}|\hspace{7pt}\thepage
+    \footerfont \hspace{7pt}\thepage
   }}
    
 \def\dBioRXiv{{\footnotesize
