@@ -138,11 +138,11 @@ Here, I present git-bob, a GitHub/GitLab-integration of an LLM-based AI-assistan
 A schematic workflow involving git-bob is depicted in Figure \ref{fig:example_interaction}: a domain expert opens an issue, a type of discussion thread, on a repository on GitHub, where git-bob is installed. A repository member can then add more information to the request and trigger git-bob to answer by writing a command such as ``git-bob comment''. If externals try so, an automatic response will inform them that only repository members are allowed to trigger git-bob because running git-bob may cause costs for repository owners. Once triggered, git-bob will use an LLM to respond to the question, potentially including a code snippet and resulting plots or images. Users and the AI-assistant can then discuss back and forth until some potential solution is reached. This way, good-scientific-practice can be maintained by involving not just domain experts but also data analysis experts in the discussion. Optionally, git-bob can then be asked to implement the solution and send a GitHub pull-request, another type of discussion thread, but accompanied by file modifications to the repository, for instance, including a Jupyter Notebook containing the previously discussed code solution to a given issue. A human would need to review this pull-request and merge it into the code base of the repository. Git-bob also has the capability to review pull-requests originating from humans, but it is not allowed to merge them. This reflects established practices in science, where eventually a scientist is responsible for data analysis code that becomes part of the project. 
 
 The default assistant implemented in git-bob is capable solving tasks such as: \begin{itemize}
-  \item Giving advice on how to solve a data analysis or data visualization task (\ref{fig:examplepairplot})
-  \item Supporting users of open source libraries by providing advice and code examples, as shown in \ref{fig:examplesupportingusers}. As prompt engineering techniques have the potential to decrease wrong answers and halucinations \cite{yin2023largelanguagemodelsknow}, also git-bob can be instructed to forward the question to a human in case of doubt (\ref{fig:examplesupportingusers2}). It shall be noted that there is no garantee that the LLM makes this choice with perfect accuracy. 
-  \item Documenting code (\ref{fig:example_add_documentation}). Such a task can be time-consuming when performed without AI-assistance, which can generate documentation for multiple Python functions in seconds to minutes. 
-  \item Analysing data in the repository directly, and summarizing and plotting data in CSV files (\ref{fig:exampleplotting}). 
-  \item Assisting in writing if manuscript files are stored in a GitHub repository, for example in latex format, git-bob can assist in writing. For example, the abstract for this manuscript was written by the AI-assistant and this is documented transparently as shown in \ref{fig:xample_abstract_generation}.
+  \item Giving advice on how to solve a data analysis or data visualization task (Supplementary Figure 1).
+  \item Supporting users of open source libraries by providing advice and code examples, as shown in Supplementary Figure 2. As prompt engineering techniques have the potential to decrease wrong answers and halucinations \cite{yin2023largelanguagemodelsknow}, also git-bob can be instructed to forward the question to a human in case of doubt (Supplementary Figure 3). It shall be noted that there is no garantee that the LLM makes this choice with perfect accuracy. 
+  \item Documenting code (Supplementary Figure 4). Such a task can be time-consuming when performed without AI-assistance, which can generate documentation for multiple Python functions in seconds to minutes. 
+  \item Analysing data in the repository directly, and summarizing and plotting data in CSV files (Supplementary Figure 5). 
+  \item Assisting in writing if manuscript files are stored in a GitHub repository, for example in latex format, git-bob can assist in writing. For example, the abstract for this manuscript was written by the AI-assistant and this is documented transparently as shown in Supplementary Figure 6.
   \end{itemize}
 The documentation of git-bob links to more then 50 examples where git-bob was used successfully in various contexts and readers can see successfully used prompts and corresponding results.
 
@@ -179,97 +179,6 @@ I would like to thank Elena Katharina Nicolay (UFZ Leipzig) for testing git-bob 
 %% \bigskip command. Please ignore this.             %%
 %%===================================================%%
 \bigskip
-
-
-\begin{appendices}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Supplementary Information %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\captionsetup*{format=largeformat}
-
-
-\onecolumn
-\newpage
-
-\section*{Supplementary Information}
-\setcounter{figure}{0} 
-\renewcommand{\figurename}{}
-\renewcommand{\thefigure}{Supplementary Figure \arabic{figure}}
-
-
-\begin{figure*}[h]
-\centering
-\includegraphics[width=0.9\textwidth]{example_pair_plot.png}
-\caption{\textbf{Use-case example for generating data analysis code:} The user explains a scenario (A) and triggers git-bob (underlined in magenta). The AI-assistant generates and executes code and visualizes the resulting plot. The user can click on the link to the generated notebook (underlined in green) to go to the notebook (B) and read the code and see intermediate results. The shown notebook is an excerpt as indicated by ``...''. The entire discussion and corresponding code can be read online: \url{https://github.com/haesleinhuepf/git-bob-playground/issues/48}
-\newline
-\newline
-}
-\label{fig:examplepairplot}
-\end{figure*}
-
-
-\begin{figure*}[h]
-\centering
-\includegraphics[width=0.8\textwidth]{example_supporting_users.png}
-\caption{\textbf{Use-case example for supporting users:} The assistant can be configured to act as expert on a specific Python library and answer user questions. Words triggering git-bob are underlined in magenta. The entire discussion and corresponding code can be read online: \url{https://github.com/haesleinhuepf/stackview/issues/79}
-\newline
-\newline
-}
-\label{fig:examplesupportingusers}
-\end{figure*}
-
-
-\begin{figure*}[h]
-\centering
-\includegraphics[width=0.8\textwidth]{example_supporting_users2.png}
-\caption{\textbf{Use-case example for asking an expert:} The answer to the question shown here is "No", but this is nowhere written in the documentation or the configuration of the assistant. In this case the assistant is not sure, and it can be configured to forward a question to a maintainer of the library where the question arrived. Words triggering git-bob are underlined in magenta. The entire discussion and corresponding code can be read online: \url{https://github.com/haesleinhuepf/stackview/issues/80}
-\newline
-\newline
-}
-\label{fig:examplesupportingusers2}
-\end{figure*}
-
-
-
-\begin{figure*}[h]
-\centering
-\includegraphics[width=0.82\textwidth]{example_add_documentation.png}
-\caption{\textbf{Use-case example for adding and revising documentation in code:} git-bob was used to partially write the code documentation of its own code. When asked to add documentation in a specific format, it sent a pull-request (A) and the human could inspect the code modifications (B, excerpt) before mergin the code into the project's code base. The entire discussion and corresponding code can be read online: \url{https://github.com/haesleinhuepf/git-bob/pull/29}
-\newline
-\newline
-}
-\label{fig:example_add_documentation}
-\end{figure*}
-
-
-\begin{figure*}[h]
-\centering
-\includegraphics[width=\textwidth]{example_plotting.png}
-\caption{\textbf{Use-case example for plotting data:} after explaining the assistant the folder structure of the project, it generates code for parsing a folder of CSV files and plotting results. Words triggering git-bob are underlined in magenta. The entire discussion and corresponding code can be read online: \url{https://github.com/NFDI4BIOIMAGE/training/issues/250}
-\newline
-\newline
-}
-\label{fig:exampleplotting}
-\end{figure*}
-
-
-
-
-
-
-\begin{figure*}[h]
-\centering
-\includegraphics[width=\textwidth]{example_abstract_generation.png}
-\caption{\textbf{Use-case example for working on scientific manuscripts:} after a first draft of the manuscript was written, git-bob was asked to formulate an abstract (A). The abstract was then submitted as pull-request with a short description (B). The human can also review and potentially modify the proposed text in this online interface (C). Words triggering git-bob are underlined in magenta. The entire discussion can be read online: \url{https://github.com/haesleinhuepf/git-bob-manuscript/issues/8} and \url{https://github.com/haesleinhuepf/git-bob-manuscript/pull/9}.
-\newline
-\newline
-}
-\label{fig:xample_abstract_generation}
-\end{figure*}
-
-\end{appendices}
 
 %%===========================================================================================%%
 %% If you are submitting to one of the Nature Portfolio journals, using the eJP submission   %%
