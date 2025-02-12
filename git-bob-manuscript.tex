@@ -1,3 +1,4 @@
+latex
 %Version 3 October 2023
 % See section 11 of the User Manual for version history
 %
@@ -113,7 +114,7 @@
 
 \abstract{
 
-Todo: Enter standfirst here
+The increasing use of Generative AI and Large Language Models (LLMs) is significantly affecting data science by assisting in tasks such as data analysis and code generation. The proposed open-source AI-assistant, git-bob, which integrates with GitHub and GitLab, offers transparent, collaborative, and extensible solutions that can enhance practices in the scientific community.
 
 }
 
@@ -311,8 +312,8 @@ I would like to thank Elena Katharina Nicolay (UFZ Leipzig) for testing git-bob 
 \ifx \bsertitle  \undefined \def \bsertitle#1{#1}\fi
 \ifx \bsnm \undefined \def \bsnm#1{#1}\fi
 \ifx \bsuffix \undefined \def \bsuffix#1{#1}\fi
-\ifx \bparticle \undefined \def \bparticle#1{#1}\fi
-\ifx \barticle \undefined \def \barticle#1{#1}\fi
+\ifx \bparticle \undefined \def \bparticle#1{}\fi
+\ifx \barticle \undefined \def \barticle#1{}\fi
 \bibcommenthead
 \ifx \bconfdate \undefined \def \bconfdate #1{#1}\fi
 \ifx \botherref \undefined \def \botherref #1{#1}\fi
@@ -322,9 +323,9 @@ I would like to thank Elena Katharina Nicolay (UFZ Leipzig) for testing git-bob 
 \ifx \bcomment \undefined \def \bcomment#1{#1}\fi
 \ifx \oauthor \undefined \def \oauthor#1{#1}\fi
 \ifx \citeauthoryear \undefined \def \citeauthoryear#1{#1}\fi
-\ifx \endbibitem  \undefined \def \endbibitem {}\fi
-\ifx \bconflocation  \undefined \def \bconflocation#1{#1}\fi
-\ifx \arxivurl  \undefined \def \arxivurl#1{\textsf{#1}}\fi
+\ifx \endbibitem \undefined \def \endbibitem {}\fi
+\ifx \bconflocation \undefined \def \bconflocation#1{#1}\fi
+\ifx \arxivurl \undefined \def \arxivurl#1{\textsf{#1}}\fi
 \csname PreBibitemsHook\endcsname
 
 %%% 1
@@ -484,4 +485,3 @@ Accessed: 2024-10-14
 
 
 \end{document}
-
