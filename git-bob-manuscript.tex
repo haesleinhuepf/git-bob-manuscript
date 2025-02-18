@@ -119,17 +119,7 @@ Here, I present git-bob, a GitHub/GitLab-integration of an LLM-based AI-assistan
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.5\textwidth]{fig1_scheme.png}
-\caption{\textbf{Schematic view of the interaction with git-bob:} In one discussion thread, multiple humans (H) can interact with the AI-assistant, which is installed in GitHub or GitLab Continuous Integration (CI) infrastructure. Depending on how it is triggered, the AI-assistant may use LLMs from multiple LLM service providers in the background.
-\newline
-\newline
-}
-\label{fig:example_interaction}
-\end{figure}
-
-A schematic workflow involving git-bob is depicted in Figure \ref{fig:example_interaction}: a domain expert opens an issue, a type of discussion thread, on a repository on GitHub, where git-bob is installed. A repository member can then add more information to the request and trigger git-bob to answer by writing a command such as ``git-bob comment''. If externals try so, an automatic response will inform them that only repository members are allowed to trigger git-bob because running git-bob may cause costs for repository owners. Once triggered, git-bob will use an LLM to respond to the question, potentially including a code snippet and resulting plots or images. Users and the AI-assistant can then discuss back and forth until some potential solution is reached. This way, good-scientific-practice can be maintained by involving not just domain experts but also data analysis experts in the discussion. Optionally, git-bob can then be asked to implement the solution and send a GitHub pull-request, another type of discussion thread, but accompanied by file modifications to the repository, for instance, including a Jupyter Notebook containing the previously discussed code solution to a given issue. A human would need to review this pull-request and merge it into the code base of the repository. Git-bob also has the capability to review pull-requests originating from humans, but it is not allowed to merge them. This reflects established practices in science, where eventually a scientist is responsible for data analysis code that becomes part of the project. 
+A schematic workflow involving git-bob is depicted in Figure 1: a domain expert opens an issue, a type of discussion thread, on a repository on GitHub, where git-bob is installed. A repository member can then add more information to the request and trigger git-bob to answer by writing a command such as ``git-bob comment''. If externals try so, an automatic response will inform them that only repository members are allowed to trigger git-bob because running git-bob may cause costs for repository owners. Once triggered, git-bob will use an LLM to respond to the question, potentially including a code snippet and resulting plots or images. Users and the AI-assistant can then discuss back and forth until some potential solution is reached. This way, good-scientific-practice can be maintained by involving not just domain experts but also data analysis experts in the discussion. Optionally, git-bob can then be asked to implement the solution and send a GitHub pull-request, another type of discussion thread, but accompanied by file modifications to the repository, for instance, including a Jupyter Notebook containing the previously discussed code solution to a given issue. A human would need to review this pull-request and merge it into the code base of the repository. Git-bob also has the capability to review pull-requests originating from humans, but it is not allowed to merge them. This reflects established practices in science, where eventually a scientist is responsible for data analysis code that becomes part of the project. 
 
 The default assistant implemented in git-bob is capable solving tasks such as: \begin{itemize}
   \item Giving advice on how to solve a data analysis or data visualization task (Supplementary Figure 1).
@@ -145,26 +135,16 @@ A highlight of git-bob is that a local installation is not required. Git-bob is 
 
 \backmatter
 
-\bmhead{Supplementary information}
-
-Suppementary Figures are available in a separate document.
+\bmhead{Code availability} The complete source code of git-bob is available online: https://github.com/haesleinhuepf/git-bob .
 
 \bmhead{Acknowledgements}
 
-I would like to thank Elena Katharina Nicolay (UFZ Leipzig) for testing git-bob in its early days and for providing constructive feedback on the manuscript. I also would like to thank Volker Hilsenstein for pushing for GitLab interoperability. 
+I would like to thank Elena Katharina Nicolay (UFZ Leipzig) and Mara Lampert (TU Dresden) for testing git-bob in its early days and for providing constructive feedback on the manuscript. I also would like to thank Volker Hilsenstein for pushing for GitLab interoperability.
+I acknowledge the financial support by the Federal Ministry of Education and Research of Germany and by Sächsische Staatsministerium für Wissenschaft, Kultur und Tourismus in the programme Center of Excellence for AI-research "Center for Scalable Data Analytics and Artificial Intelligence Dresden/Leipzig", project identification number: ScaDS.AI. I also acknowledge financial support from the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under the National Research Data Infrastructure – NFDI 46/1 – 501864659 - NFDI4BioImage.
 
-\section*{Declarations}
+\bmhead{Conflict of interest/Competing interests} The authors declare no conflict of interest.
 
-\begin{itemize}
-\item Funding: I acknowledge the financial support by the Federal Ministry of Education and Research of Germany and by Sächsische Staatsministerium für Wissenschaft, Kultur und Tourismus in the programme Center of Excellence for AI-research "Center for Scalable Data Analytics and Artificial Intelligence Dresden/Leipzig", project identification number: ScaDS.AI. I also acknowledge financial support from the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under the National Research Data Infrastructure – NFDI 46/1 – 501864659 - NFDI4BioImage.
-\item Conflict of interest/Competing interests: The authors declare no conflict of interest.
-\item Ethics approval and consent to participate: Not applicable.
-\item Consent for publication: Consent.
-\item Data availability: Not applicable.
-\item Materials availability: Not applicable.
-\item Code availability: The complete source code of git-bob is available online: https://github.com/haesleinhuepf/git-bob . The manuscipt is available openly too: https://github.com/haesleinhuepf/git-bob-manuscript
-\item Author contribution: RH wrote the software and the manuscript. Some portions of code and text were generated using generative artificial intelligence. The git-history of the both above mentioned repositories informs about which parts were written by RH: Parts which parts were AI-generated are authored by github-actions[bot].
-\end{itemize}
+
 
 \noindent
 
@@ -384,6 +364,12 @@ Accessed: 2024-10-14
 \endbibitem
 
 \end{thebibliography}
+
+
+\section*{Figure legends}
+
+Figure 1: \textbf{Schematic view of the interaction with git-bob:} In one discussion thread, multiple humans (H) can interact with the AI-assistant, which is installed in GitHub or GitLab Continuous Integration (CI) infrastructure. Depending on how it is triggered, the AI-assistant may use LLMs from multiple LLM service providers in the background.
+
 
 
 \end{document}
