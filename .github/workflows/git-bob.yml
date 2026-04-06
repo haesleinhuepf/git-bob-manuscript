@@ -29,15 +29,7 @@ jobs:
     - name: Display the current branch
       run: git branch
 
-    - name: Print pull request details
-      run: |  
-        echo "Pull Request Number - ${{ github.event.pull_request.number }}"
-        echo "github.event.issue.pull_request - ${{ github.event.issue.pull_request }}"
-        echo "github.event.pull_request.head.ref - ${{ github.event.pull_request.head.ref }}"
-        echo "github.event.issue.pull_request.head.ref - ${{ github.event.issue.pull_request.head.ref }}"
-        echo "Organization - ${{ github.repository_owner }}"
-        echo "Repository Name - ${{ github.repository }}"
-
+    
     - name: Print Job details
       run: |  
         echo "Run ID - ${{ github.run_id }}"
